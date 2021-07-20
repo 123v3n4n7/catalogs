@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: dockerfile
+    volumes:
+      - ./:/docker/
+    ports:
+      - '8000:8000'
+  nginx:
+    build:
+      context: ./services/nginx
+      dockerfile: dockerfile
+    depends_on:
+      - web
+    ports:
+      - '80:80'
+    volumes:
+      - ./static/:/docker/static/

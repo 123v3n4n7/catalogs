@@ -4,28 +4,33 @@
 
 Реализует возможность получать списки справочников и их элементов, 
 с возможностью фильтрации по дате и версии справочника.
-Добавление новых справочников и элементов реализовано в админке localhost:8000/admin/
+Добавление новых справочников и элементов реализовано в админке http://127.0.0.1/admin/
 
-localhost:8000/api/ - get запрос возвращает список всех существующих справочников. 
+http://127.0.0.1/api/ - get запрос возвращает список всех существующих справочников. 
 Если добавить параметр запроса date в фотмате YYYY-mm-dd, то вернётся список справочников,
 отфильтрованный по указанной дате. 
-Пример: http://localhost:8000/api/?date=2021-07-10
+Пример: http://127.0.0.1/api/?date=2021-07-10
 
 localhost:8000/api/elements/ - get запрос возвращает список элементов конкретного справочника. Название справочника 
 указывается в параметре catalog_name, версия справочника указывается в параметре version, если параметр 
 version не указан, то будет браться последняя версия справочника.
-Пример: http://localhost:8000/api/elements/?catalog_name=Тестовый справочник
-        http://localhost:8000/api/elements/?catalog_name=Тестовый справочник&version=Тестовый справочник_3
+Пример: http://127.0.0.1/api/elements/?catalog_name=Тестовый справочник
+        http://127.0.0.1/api/elements/?catalog_name=Тестовый справочник&version=Тестовый справочник_3
 
 ## Запуск проекта
+docker-compose build --no-cache
+docker-compose up
 
-Создание образа проекта:
-sudo docker build --tag catalogs-docker .
+[comment]: <> (Создание образа проекта:)
 
-Запуск образа:
-sudo docker run --publish 8000:8000 catalogs-docker
+[comment]: <> (sudo docker build --tag catalogs-docker .)
 
-В запущенном контейнере выполнить команду создания пользователя:
-sudo docker exec -it {id-контейнера} python manage.py createsuperuser
+[comment]: <> (Запуск образа:)
+
+[comment]: <> (sudo docker run --publish 8000:8000 catalogs-docker)
+
+[comment]: <> (В запущенном контейнере выполнить команду создания пользователя:)
+
+[comment]: <> (sudo docker exec -it {id-контейнера} python manage.py createsuperuser)
 
 
